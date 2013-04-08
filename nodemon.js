@@ -156,8 +156,10 @@ watchFileChecker.check = function(cb) {
     cb(true);
   });
   // This should trigger fs.watch, if it works
-  fs.writeSync(watchFile, '1');
-  fs.unlinkSync(watchFileName);
+  setTimeout(function(){
+    fs.writeSync(watchFile, '1');
+    fs.unlinkSync(watchFileName);
+  }, 100);
 
   setTimeout(function() { watchFileChecker.verify(); }, 250);
 };
